@@ -94,6 +94,8 @@ export type WorkingWithUsSectionData = {
   thirdItemHeading: string | null;
   thirdItemSubHeading: string | null;
   thirdItemContent: string | null;
+  buttonText: string | null;
+  buttonLink: string | null;
 };
 
 type GetPageResponse = {
