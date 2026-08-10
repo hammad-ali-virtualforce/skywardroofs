@@ -6,7 +6,7 @@ import {
   FaTiktok,
   FaYoutube,
 } from "react-icons/fa6";
-
+import {AtSign, MapPin, PhoneCall, ChevronRight } from  "lucide-react";
 import type {
   BrandingSettings,
   FooterSettings,
@@ -38,17 +38,20 @@ function FooterMenuColumn({
 }) {
   return (
     <div>
-      <h2 className="text-lg font-bold">{heading}</h2>
+      <h2 className="text-lg font-bold text-[24px]">{heading}</h2>
 
-      <ul className="mt-5 space-y-3">
+      <ul className="mt-5 space-y-5">
         {items.map((item) => (
           <li key={item.id}>
             <Link
               href={getMenuHref(item)}
               target={item.target || undefined}
-              className="opacity-80 transition-opacity hover:opacity-100"
+              className="transition-opacity text-[20px] flex flex-row items-center gap-2"
             >
-              {item.label}
+              <ChevronRight 
+                size={18}
+                className="text-[var(--color-secondary,#F4B400)]"/>
+                {item.label}
             </Link>
 
             {item.children.length > 0 && (
@@ -58,9 +61,12 @@ function FooterMenuColumn({
                     <Link
                       href={getMenuHref(child)}
                       target={child.target || undefined}
-                      className="text-sm opacity-70 transition-opacity hover:opacity-100"
+                      className="transition-opacity text-[20px] flex flex-row items-center gap-2"
                     >
-                      {child.label}
+                      <ChevronRight 
+                        size={18}
+                        className="text-[var(--color-secondary,#F4B400)]"/>
+                        {child.label}
                     </Link>
                   </li>
                 ))}
@@ -195,31 +201,45 @@ function FooterSocialLinks({
             </h2>
 
             <div className="mt-5 space-y-4 opacity-80">
+              {settings.footerEmailAddress && (
+                <a
+                  href={`mailto:${settings.footerEmailAddress}`}
+                  className="flex gap-3 items-center hover:opacity-100"
+                >
+                   <span className="footer-icon"><AtSign
+                    size={28}
+                    aria-hidden="true"
+                  /></span>
+                  <span>Connect With Us Now
+                  <strong className="block text-[20px]">{settings.footerEmailAddress}</strong></span>
+                </a>
+              )}
+
+              {settings.footerBusinessAddress && (
+                <p className="flex gap-3 items-center whitespace-pre-line">
+                   <span className="footer-icon"><MapPin
+                    size={28}
+                    aria-hidden="true"
+                  /></span>
+                  {settings.footerBusinessAddress}
+                </p>
+              )}
               {settings.footerPhoneNumber && (
                 <a
                   href={`tel:${settings.footerPhoneNumber.replace(
                     /[^\d+]/g,
                     "",
                   )}`}
-                  className="block hover:opacity-100"
+                  className="flex gap-3 items-center block hover:opacity-100"
                 >
-                  {settings.footerPhoneNumber}
+                  <span className="footer-icon"><PhoneCall
+                    size={28}
+                    aria-hidden="true"
+                  /></span>
+                  <span>Call For Free!
+                  <strong className="block text-[20px]">{settings.footerPhoneNumber}</strong></span>
+                  
                 </a>
-              )}
-
-              {settings.footerEmailAddress && (
-                <a
-                  href={`mailto:${settings.footerEmailAddress}`}
-                  className="block hover:opacity-100"
-                >
-                  {settings.footerEmailAddress}
-                </a>
-              )}
-
-              {settings.footerBusinessAddress && (
-                <p className="whitespace-pre-line">
-                  {settings.footerBusinessAddress}
-                </p>
               )}
             </div>
           </div>

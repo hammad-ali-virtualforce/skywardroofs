@@ -7,13 +7,13 @@ import {
   useTransform,
 } from "framer-motion";
 
-type HeroBackgroundProps = {
+type AboutBackgroundProps = {
   image: string;
 };
 
-export function HeroBackground({
+export function AboutBackground({
   image,
-}: HeroBackgroundProps) {
+}: AboutBackgroundProps) {
   const { scrollY } = useScroll();
 
   /*
@@ -25,14 +25,14 @@ export function HeroBackground({
    */
   const y = useTransform(
     scrollY,
-    [0, 900],
-    [-120, 420],
+    [0, 2500],
+    [-300, 500],
   );
 
   const scale = useTransform(
     scrollY,
-    [0, 900],
-    [1.15, 1.3],
+    [0, 2500],
+    [1.15, 1.25],
   );
 
   return (

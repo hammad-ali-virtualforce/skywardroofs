@@ -7,32 +7,32 @@ import {
   useTransform,
 } from "framer-motion";
 
-type HeroBackgroundProps = {
+type PageBackgroundProps = {
   image: string;
 };
 
-export function HeroBackground({
+export function PageBackground({
   image,
-}: HeroBackgroundProps) {
+}: PageBackgroundProps) {
   const { scrollY } = useScroll();
 
   /*
-   * Increase these values for stronger movement.
+   * Page scroll:
+   * 0px   -> image y = -120px
+   * 1500px -> image y = 500px
    *
-   * Scroll page:
-   * 0px    -> image y = -120px
-   * 900px  -> image y = 420px
+   * Increase the last value for stronger movement.
    */
   const y = useTransform(
     scrollY,
-    [0, 900],
-    [-120, 420],
+    [0, 1500],
+    [-120, 500],
   );
 
   const scale = useTransform(
     scrollY,
-    [0, 900],
-    [1.15, 1.3],
+    [0, 1500],
+    [1.18, 1.28],
   );
 
   return (
@@ -41,7 +41,8 @@ export function HeroBackground({
         y,
         scale,
       }}
-      className="absolute -inset-[15%] -z-20"
+      className="pointer-events-none fixed -inset-[15%] z-[-1] overflow-hidden "
+      aria-hidden="true"
     >
       <Image
         src={image}
@@ -49,8 +50,10 @@ export function HeroBackground({
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="object-cover max-w-full"
       />
+
+      <div className="absolute inset-0 bg-black/20" />
     </motion.div>
   );
 }

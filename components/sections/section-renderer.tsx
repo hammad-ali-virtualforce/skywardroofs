@@ -1,5 +1,7 @@
 import { HeroSection } from "@/components/sections/hero-section";
-
+import { PartnersSection } from "@/components/sections/partners-section";
+import { AboutUsSection } from "@/components/sections/about-us-section";
+import { WorkingWithUsSection } from "@/components/sections/working-with-us-section";
 import type {
   PageSection,
 } from "@/lib/page-data";
@@ -27,7 +29,27 @@ export function SectionRenderer({
                 data={section}
               />
             );
-
+            case "PageBuilderFieldsPageSectionsPartnersLayout":
+            return (
+              <PartnersSection
+                key={`partners-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsAboutUsLayout":
+            return (
+              <AboutUsSection
+                key={`about-us-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsWorkingWithUsLayout":
+            return (
+              <WorkingWithUsSection
+                key={`working-with-us-${index}`}
+                data={section}
+              />
+            );
           default:
             return null;
         }

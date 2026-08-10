@@ -49,7 +49,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.overlay-div:before {
+/* .overlay-div:before {
     content: "";
     background: #000;
     position: absolute;
@@ -58,4 +58,13 @@ body {
     opacity: .2;
     transform: rotate(-49deg);
     left: -186px;
+} */
+span.footer-icon {
+    background: #8b0000;
+    border-radius: 50%;
+    padding: 15px;
+}
+.workingwithus{
+  background-color: #fff0;
+    background-image: linear-gradient(180deg, #0D1928 0%, #75333d 100%);
 }
