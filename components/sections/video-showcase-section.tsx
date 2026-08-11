@@ -452,7 +452,6 @@ function VideoGallery({
                     }
                     alt={
                       image.altText ||
-                      item.title ||
                       "YouTube video"
                     }
                     fill
@@ -519,23 +518,6 @@ function VideoGallery({
                     "
                   />
                 </div>
-
-                {item.title && (
-                  <h3
-                    className="
-                      mt-4
-                      text-lg
-                      font-bold
-                      uppercase
-                      leading-tight
-                      text-[#171717]
-                      transition-colors
-                      group-hover:text-[#75333d]
-                    "
-                  >
-                    {item.title}
-                  </h3>
-                )}
               </a>
             );
           },

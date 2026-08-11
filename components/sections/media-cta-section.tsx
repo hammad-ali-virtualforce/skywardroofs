@@ -40,10 +40,10 @@ export function MediaCtaSection({
     useRef<HTMLElement>(null);
 
   const background =
-    data.backgroundImage?.node;
+    data.backgroundImage?.node ?? null;
 
   const image =
-    data.mainImage?.node;
+    data.mainImage?.node ?? null;
 
   const columns = normalizeValue(
     data.numberOfColumns,
