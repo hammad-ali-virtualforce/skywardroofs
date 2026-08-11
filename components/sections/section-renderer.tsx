@@ -2,6 +2,16 @@ import { HeroSection } from "@/components/sections/hero-section";
 import { PartnersSection } from "@/components/sections/partners-section";
 import { AboutUsSection } from "@/components/sections/about-us-section";
 import { WorkingWithUsSection } from "@/components/sections/working-with-us-section";
+import { MediaCtaSection } from "@/components/sections/media-cta-section";
+import {  ServicesGridSection,} from "@/components/sections/services-grid-section";
+import {  ProcessSection,} from "@/components/sections/process-section";
+import {  TeamSection,} from "@/components/sections/team-section";
+import {  BlogSection,} from "@/components/sections/blog-section";
+import {  FaqSection,} from "@/components/sections/faq-section";
+import {  ServiceAreasSection,} from "@/components/sections/service-areas-section";
+import {
+  VideoShowcaseSection,
+} from "@/components/sections/video-showcase-section";
 import type {
   PageSection,
 } from "@/lib/page-data";
@@ -47,6 +57,62 @@ export function SectionRenderer({
             return (
               <WorkingWithUsSection
                 key={`working-with-us-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsVideoShowcaseLayout":
+            return (
+              <VideoShowcaseSection
+                key={`video-showcase-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsMediaCtaLayout":
+            return (
+              <MediaCtaSection 
+              key={`media-cta-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsServicesGridLayout":
+            return (
+              <ServicesGridSection
+                key={`services-grid-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsProcessSectionLayout":
+            return (
+              <ProcessSection
+                key={`process-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsTeamSectionLayout":
+            return (
+              <TeamSection
+                key={`team-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsBlogSectionLayout":
+            return (
+              <BlogSection
+                key={`blog-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsFaqSectionLayout":
+            return (
+              <FaqSection
+                key={`faq-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsServiceAreasLayout":
+            return (
+              <ServiceAreasSection
+                key={`service-areas-${index}`}
                 data={section}
               />
             );

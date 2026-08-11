@@ -6,7 +6,7 @@ import {
   FaTiktok,
   FaYoutube,
 } from "react-icons/fa6";
-import {AtSign, MapPin, PhoneCall, ChevronRight } from  "lucide-react";
+import {MailOpen, MapPin, PhoneCall, ChevronRight } from  "lucide-react";
 import type {
   BrandingSettings,
   FooterSettings,
@@ -50,7 +50,7 @@ function FooterMenuColumn({
             >
               <ChevronRight 
                 size={18}
-                className="text-[var(--color-secondary,#F4B400)]"/>
+                className="text-[var(--color-secondary,#FFF)]"/>
                 {item.label}
             </Link>
 
@@ -65,7 +65,7 @@ function FooterMenuColumn({
                     >
                       <ChevronRight 
                         size={18}
-                        className="text-[var(--color-secondary,#F4B400)]"/>
+                        className="text-[var(--color-secondary,#FFF)]"/>
                         {child.label}
                     </Link>
                   </li>
@@ -206,7 +206,7 @@ function FooterSocialLinks({
                   href={`mailto:${settings.footerEmailAddress}`}
                   className="flex gap-3 items-center hover:opacity-100"
                 >
-                   <span className="footer-icon"><AtSign
+                   <span className="footer-icon"><MailOpen 
                     size={28}
                     aria-hidden="true"
                   /></span>
@@ -249,7 +249,7 @@ function FooterSocialLinks({
       {/* Full width CTA */}
       {settings.showFooterCta && (
         <section
-          className="relative overflow-hidden"
+          className="relative overflow-hidden cta"
           style={{
           backgroundColor: footerBackground,
         }}

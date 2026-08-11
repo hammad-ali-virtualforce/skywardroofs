@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { HeroTypewriter } from "@/components/sections/hero-typewriter";
 import { HeroBackground } from "@/components/sections/hero-background";
+import {  HeroInspectionForm,} from "@/components/forms/hero-inspection-form";
 import {
   BadgeCheck,
   CheckCircle2,
@@ -132,7 +133,15 @@ export function HeroSection({
             />
           )}
         </div>
-        <div className="relative hidden min-h-[540px] lg:block"></div>
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_560px]">
+        <div>
+          {/* hero heading/content */}
+        </div>
+
+        {data.showForm && (
+          <HeroInspectionForm />
+        )}
+      </div>
       </div>
     </section>
   );

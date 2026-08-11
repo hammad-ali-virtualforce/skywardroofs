@@ -68,3 +68,8 @@ span.footer-icon {
   background-color: #fff0;
     background-image: linear-gradient(180deg, #0D1928 0%, #75333d 100%);
 }
+.font-script {
+  font-family: var(--font-yellowtail), cursive;
+}
+footer a svg{fill:#8b0000}
+footer .cta a:hover svg{fill:#fff}

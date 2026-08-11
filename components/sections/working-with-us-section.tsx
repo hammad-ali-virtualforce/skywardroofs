@@ -137,6 +137,7 @@ export function WorkingWithUsSection({
           className="
             mt-20
             flex
+            items-stretch
             lg:mt-24
           "
         >
@@ -217,7 +218,7 @@ function FeatureItem({
   content,
 }: FeatureItemProps) {
   return (
-    <div className="relative border-r border-white text-center last:border-r-0 p-8">
+    <div className="relative flex-1 border-r border-white text-center last:border-r-0 p-8">
    
 
       {heading && (

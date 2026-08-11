@@ -1,23 +1,27 @@
 import { SectionRenderer } from "@/components/sections/section-renderer";
 import { getPage } from "@/lib/page-data";
+import type { Metadata } from "next";
+
+import { getRankMathMetadata } from "@/lib/seo";
+
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getRankMathMetadata("/");
+}
 
 export default async function HomePage() {
   const page = await getPage("/");
 
   if (!page) {
-    return (
-      <main className="mx-auto max-w-7xl px-6 py-20">
-        <h1>Home page not found.</h1>
-      </main>
-    );
+    return null;
   }
 
+  const sections =
+    page.pageBuilderFields?.pageSections ?? [];
+
   return (
-    <SectionRenderer
-      sections={
-        page.pageBuilderFields
-          ?.pageSections
-      }
-    />
+    <main>
+      <SectionRenderer sections={sections} />
+    </main>
   );
 }
