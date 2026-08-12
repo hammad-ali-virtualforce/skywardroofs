@@ -56,7 +56,7 @@ export function HeroSection({
     data.heroImage?.node;
 
   return (
-    <section className="relative isolate min-h-[680px] overflow-hidden bg-[#17121f] text-white">
+    <section className="relative isolate min-h-[680px] overflow-hidden bg-[#17121f] text-white ">
       {background && (
         <HeroBackground  image={background.sourceUrl}/>
       )}

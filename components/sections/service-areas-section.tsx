@@ -22,7 +22,7 @@ export function ServiceAreasSection({
     data.serviceAreas?.nodes ?? [];
 
   return (
-    <section className="relative overflow-hidden bg-[#0d1117] text-white">
+    <section className="relative overflow-hidden bg-[#0d1117] text-white" id="service-area">
       <div className="grid min-h-[650px] lg:grid-cols-2">
 
         {/* =========================================

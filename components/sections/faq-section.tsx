@@ -42,6 +42,7 @@ export function FaqSection({
         py-20
         lg:py-28
       "
+      id="faq"
     >
       <div
         className="

@@ -9,6 +9,14 @@ import {  TeamSection,} from "@/components/sections/team-section";
 import {  BlogSection,} from "@/components/sections/blog-section";
 import {  FaqSection,} from "@/components/sections/faq-section";
 import {  ServiceAreasSection,} from "@/components/sections/service-areas-section";
+import {  ContentMediaSection,} from "@/components/sections/content-media-section";
+import {  FeatureGridSection,} from "@/components/sections/feature-grid-section";
+import {  ProjectGallerySection,} from "@/components/sections/project-gallery-section";
+import {  ReviewsSection,} from "@/components/sections/reviews-section";
+import {  ProductCardsSection,} from "@/components/sections/product-cards-section";
+import {  ComparisonSection,} from "@/components/sections/comparison-section";
+import {  TrustBadgeSection,} from "@/components/sections/trust-badge-section";
+import {  InnerHeroSection,} from "@/components/sections/inner-hero-section";
 import {
   VideoShowcaseSection,
 } from "@/components/sections/video-showcase-section";
@@ -113,6 +121,62 @@ export function SectionRenderer({
             return (
               <ServiceAreasSection
                 key={`service-areas-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsContentMediaLayout":
+            return (
+              <ContentMediaSection
+                key={`content-media-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsFeatureGridLayout":
+            return (
+              <FeatureGridSection
+                key={`feature-grid-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsProjectGalleryLayout":
+            return (
+              <ProjectGallerySection
+                key={`project-gallery-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsReviewsLayout":
+            return (
+              <ReviewsSection
+                key={`reviews-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsProductCardsLayout":
+            return (
+              <ProductCardsSection
+                key={`product-cards-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsComparisonLayout":
+            return (
+              <ComparisonSection
+                key={`comparison-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsTrustBadgesLayout":
+            return (
+              <TrustBadgeSection
+                key={`trust-badge-${index}`}
+                data={section}
+              />
+            );
+            case "PageBuilderFieldsPageSectionsInnerHeroLayout":
+            return (
+              <InnerHeroSection
+                key={`inner-hero-${index}`}
                 data={section}
               />
             );

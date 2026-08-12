@@ -22,7 +22,7 @@ export function PartnersSection({
   }
 
   return (
-    <section className="bg-[#181818] py-10 lg:py-12">
+    <section className="bg-[#181818] py-10 lg:py-12" id="partners">
       <div className="mx-auto max-w-[1500px] px-6 lg:px-8">
         <div className="grid grid-cols-2 items-center gap-x-8 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
           {partners.map((partner, index) => {

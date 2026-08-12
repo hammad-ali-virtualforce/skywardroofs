@@ -543,6 +543,7 @@ export function VideoShowcaseSection({
         py-20
         lg:py-28
       "
+      id="video-showcase"
     >
       <div
         className="

@@ -35,7 +35,7 @@ export function AboutUsSection({
     imagePosition === "right";
 
   return (
-    <section className="relative isolate min-h-[680px] py-20 overflow-hidden bg-transparent text-white">
+    <section className="relative isolate min-h-[680px] py-20 overflow-hidden bg-transparent text-white ">
       {/* Background decorative image */}
       {background && (
         <AboutBackground  image={background.sourceUrl}/>

@@ -52,9 +52,8 @@ export function ServicesGridSection({
 
   const services =
     data.servicesItems ?? [];
-console.log("services data", data)
   return (
-    <section className="bg-[#f5f5f5] py-20 lg:py-28">
+    <section className="relative bg-[#f5f5f5] py-20 lg:py-28 aftershape">
       <div className="mx-auto grid max-w-[1500px] gap-14 px-6 lg:grid-cols-[0.9fr_1.4fr] lg:items-start lg:px-8">
         {/* Left side */}
         <div>

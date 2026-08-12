@@ -13,9 +13,9 @@ export function TeamSection({
 }: TeamSectionProps) {
   const members =
     data.teamMembers?.nodes ?? [];
-
+console.log("members", members)
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <section className="bg-white py-20 lg:py-28" id="team">
       <div className="mx-auto max-w-[1500px] px-6 lg:px-8">
 
         {/* Heading */}

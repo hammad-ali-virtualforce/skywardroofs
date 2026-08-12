@@ -22,19 +22,52 @@ export function WorkingWithUsSection({
 }: WorkingWithUsSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
-  const image = data.movingImage?.node;
-    console.log("image", image)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
+  const movingimage = data.movingImage?.node;
+ 
+  const stillImage = data.stillImage?.node;
+   // Small vertical movement of whole hammer
+ const { scrollYProgress } = useScroll({
+  target: sectionRef,
+  offset: [
+    "start 85%",
+    "end 25%",
+  ],
+});
+   const hammerY = useTransform(
+  scrollYProgress,
+  [0, 0.15, 0.28, 0.38, 0.48, 1],
+  [-110, -70, 10, 75, 25, 25],
+);
 
-  // Small vertical movement of whole hammer
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [100, -100],
-  );
+const hammerX = useTransform(
+  scrollYProgress,
+  [0, 0.28, 0.38, 0.48, 1],
+  [-55, -20, 8, 0, 0],
+);
+
+const hammerRotate = useTransform(
+  scrollYProgress,
+  [0, 0.15, 0.28, 0.38, 0.48, 1],
+  [-30, -22, -5, 24, 7, 7],
+);
+
+const hammerScale = useTransform(
+  scrollYProgress,
+  [0, 0.32, 0.38, 0.43, 1],
+  [1, 1, 1.07, 1, 1],
+);
+
+const nailY = useTransform(
+  scrollYProgress,
+  [0, 0.36, 0.42, 0.52, 1],
+  [0, 0, 22, 42, 42],
+);
+
+const nailScaleY = useTransform(
+  scrollYProgress,
+  [0, 0.36, 0.5, 1],
+  [1, 1, 0.88, 0.88],
+);
 
   return (
     <section
@@ -48,66 +81,133 @@ export function WorkingWithUsSection({
         to-[#75333d]
         py-12
         text-white
-        lg:py-12
+        lg:py-24
+        aftershape
       "
+      id="working-with-us"
     >
       <div className="mx-auto max-w-[1650px] px-6 lg:px-8">
 
         {/* ------------------------------
             MOVING HAMMER
         ------------------------------ */}
-        {image && (
-          <div className="relative flex justify-center">
+       {movingimage && (
+        <div
+          className="
+            relative
+            mx-auto
+            flex
+            h-[560px]
+            max-w-[900px]
+            items-center
+            justify-center
+          "
+        >
+          {/* subtle glow */}
+          <div
+            className="
+              absolute
+              left-1/2
+              top-1/2
+              h-[320px]
+              w-[320px]
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full
+              bg-white/5
+              blur-3xl
+            "
+          />
+
+          {/* ------------------------------
+              NAIL
+          ------------------------------ */}
+
+          {stillImage && (
             <motion.div
-              style={{ y }}
-              className="relative flex h-[500px] w-[600px] items-center justify-center"
+              style={{
+                y: nailY,
+                scaleY: nailScaleY,
+                transformOrigin: "bottom center",
+              }}
+              className="
+                absolute
+                bottom-[5px]
+                left-[84%]
+                z-10
+                w-full
+              "
             >
-              {/* subtle glow */}
-              <div
+              <Image
+                src={stillImage.sourceUrl}
+                alt={
+                  stillImage.altText ||
+                  "Roofing nail"
+                }
+                width={
+                  stillImage.mediaDetails?.width ||
+                  100
+                }
+                height={
+                  stillImage.mediaDetails?.height ||
+                  300
+                }
                 className="
-                  absolute
-                  h-[220px]
-                  w-[220px]
-                  rounded-full
-                  bg-white/5
-                  blur-3xl
+                  h-auto
+                  w-[30px]
+                  object-contain
                 "
               />
-
-              {/* continuously spinning hammer */}
-              <motion.div
-                animate={{
-                  rotate: 360,
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="relative z-10 w-[600px]"
-              >
-                <Image
-                  src={image.sourceUrl}
-                  alt={image.altText || ""}
-                  width={
-                    image.mediaDetails?.width ||
-                    300
-                  }
-                  height={
-                    image.mediaDetails?.height ||
-                    300
-                  }
-                  priority={false}
-                  className="
-                    h-auto
-                    w-full
-                    object-contain
-                  "
-                />
-              </motion.div>
             </motion.div>
-          </div>
-        )}
+          )}
+
+          {/* ------------------------------
+              HAMMER
+          ------------------------------ */}
+
+          <motion.div
+            style={{
+              x: hammerX,
+              y: hammerY,
+              rotate: hammerRotate,
+              scale: hammerScale,
+              transformOrigin: "62% 182%",
+            }}
+            className="
+              absolute
+              left-1/2
+              top-[130px]
+              z-20
+              w-[360px]
+              -translate-x-[62%]
+              sm:w-[440px]
+              lg:w-[540px]
+            "
+          >
+            <Image
+              src={movingimage.sourceUrl}
+              alt={
+                movingimage.altText ||
+                "Roofing hammer"
+              }
+              width={
+                movingimage.mediaDetails?.width ||
+                600
+              }
+              height={
+                movingimage.mediaDetails?.height ||
+                600
+              }
+              className="
+                h-auto
+                w-full
+                object-contain
+              "
+            />
+          </motion.div>
+        </div>
+      )}
+        
 
         {/* ------------------------------
             HEADING
