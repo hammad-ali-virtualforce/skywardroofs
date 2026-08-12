@@ -29,7 +29,7 @@ export function TrustBadgeSection({
   data,
 }: TrustBadgeSectionProps) {
   const items =
-    data.credentialItems ?? [];
+    data.trustBadgeItems ?? [];
 
   const columns =
     normalizeValue(
