@@ -38,9 +38,16 @@ export function FaqSection({
     <section
       className="
         overflow-hidden
-        bg-[#f5f5f3]
-        py-20
-        lg:py-28
+        bg-white
+        py-4
+        lg:py-4
+        bg-gradient-to-b
+
+        from-white
+
+        via-[#fefefe]
+
+        to-[#f7f7f7]
       "
       id="faq"
     >
@@ -70,7 +77,7 @@ export function FaqSection({
                 uppercase
                 leading-[1.05]
                 tracking-[-0.035em]
-                text-[#282828]
+                text-[#75333d]
                 sm:text-4xl
                 lg:text-5xl
                  mb-10
@@ -237,7 +244,7 @@ export function FaqSection({
               relative
               mx-auto
               w-full
-              max-w-[650px]
+              max-w-full
             "
           >
             <div
@@ -261,7 +268,7 @@ export function FaqSection({
                   100vw
                 "
                 className="
-                  object-cover
+                  object-contain
                   transition-transform
                   duration-700
                   hover:scale-105
@@ -269,19 +276,6 @@ export function FaqSection({
               />
             </div>
 
-            {/* BURGUNDY DECORATION */}
-
-            <div
-              className="
-                absolute
-                -bottom-5
-                -left-5
-                -z-10
-                h-[45%]
-                w-[45%]
-                bg-[#75333d]
-              "
-            />
           </div>
         )}
       </div>
