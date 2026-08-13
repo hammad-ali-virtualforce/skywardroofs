@@ -143,7 +143,7 @@ export function SiteHeader({
   settings,
 }: SiteHeaderProps) {
   const logo = branding.headerLogo?.node;
-
+  console.log("logo",logo);
   return (
    <>
       {topBar.showTopBar && (
@@ -320,15 +320,11 @@ export function SiteHeader({
       </div>
     </header>
     <MobileHeader
-      logo={logo}
+      logo={logo ?? null}
       leftMenu={leftMenu}
       rightMenu={rightMenu}
-      phoneNumber={
-        settings.phoneNumber
-      }
-      phoneLink={
-        settings.phoneLink
-      }
+      phoneNumber={settings.phoneNumber ?? ""}
+      phoneLink={settings.phoneLink ?? ""}
     />
     </>
   );
