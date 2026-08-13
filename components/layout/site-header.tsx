@@ -14,7 +14,7 @@ import type {
   MenuItemTree,
   TopBarSettings,
 } from "@/lib/site-data";
-
+import { MobileHeader, } from "@/components/layout/mobile-header";
 type SiteHeaderProps = {
   leftMenu: MenuItemTree[];
   rightMenu: MenuItemTree[];
@@ -209,8 +209,8 @@ export function SiteHeader({
  <header
       className={
         settings.stickyHeader
-          ? "sticky top-0 z-50 shadow-[0px_0px_20px_-10px_#0003]"
-          : "relative z-50"
+          ? "sticky top-0 z-50 shadow-[0px_0px_20px_-10px_#0003] hidden lg:block"
+          : "relative z-50 hidden lg:block"
       }
     >
       <div
@@ -319,6 +319,17 @@ export function SiteHeader({
         </div>
       </div>
     </header>
+    <MobileHeader
+      logo={logo}
+      leftMenu={leftMenu}
+      rightMenu={rightMenu}
+      phoneNumber={
+        settings.phoneNumber
+      }
+      phoneLink={
+        settings.phoneLink
+      }
+    />
     </>
   );
 }

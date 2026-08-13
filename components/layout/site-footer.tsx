@@ -293,7 +293,7 @@ function FooterSocialLinks({
                   links={settings.footerSocialMedia}
                 />
               </div>
-              <div className="flex flex-row gap-6 align-center">
+              <div className="flex flex-col md:flex-row md-mt-0 mt-4 md:text-left text-center gap-6 align-center">
                 {settings.footerCtaHeading && (
                   <h2 className="text-3xl font-bold">
                     {settings.footerCtaHeading}
@@ -322,7 +322,7 @@ function FooterSocialLinks({
       <div className="bg-[#0f0e14] text-white" style={{
           backgroundColor: footerBackground,
         }}>
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-sm md:flex-row md:items-center md:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 md:text-left text-center text-sm md:flex-row md:items-center md:justify-between justify-center lg:px-8">
           <p>
             {settings.copyrightText ||
               `© ${new Date().getFullYear()} Skyward Roofs. All rights reserved.`}

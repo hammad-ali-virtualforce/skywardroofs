@@ -340,7 +340,13 @@ function getBackgroundClasses(
   switch (background) {
     case "light":
       return `
-        bg-[#f5f5f3]
+        bg-gradient-to-b
+
+        from-white
+
+        via-[#fefefe]
+
+        to-[#f7f7f7]
         text-[#252525]
       `;
 
@@ -379,7 +385,8 @@ function ContentButton({
     items-center
     justify-center
     gap-3
-    bg-[#75333d]
+    bg-black
+    
     px-8
     py-3
     font-bold
@@ -389,7 +396,9 @@ function ContentButton({
     duration-300
 
     hover:-translate-y-1
-    hover:bg-black
+    hover:bg-[#75333d]
+    hover:border-black
+    hover:border
   `;
 
   const content = (

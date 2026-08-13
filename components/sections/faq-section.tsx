@@ -36,19 +36,7 @@ export function FaqSection({
 
   return (
     <section
-      className="
-        overflow-hidden
-        bg-white
-        py-4
-        lg:py-4
-        bg-gradient-to-b
-
-        from-white
-
-        via-[#fefefe]
-
-        to-[#f7f7f7]
-      "
+      className="relative bg-gradient-to-b from-white via-[#fefefe] to-[#f7f7f7] py-4 lg:py-4"
       id="faq"
     >
       <div

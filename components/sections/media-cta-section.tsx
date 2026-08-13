@@ -148,14 +148,7 @@ export function MediaCtaSection({
   return (
     <section
       ref={sectionRef}
-      className="
-        relative
-        isolate
-        overflow-hidden
-        text-white
-        bg-no-repeat
-        bg-cover
-      "
+      className="relative isolate overflow-hidden text-white bg-no-repeat bg-cover aftershaperotated"
        style={{
     backgroundImage:
       background

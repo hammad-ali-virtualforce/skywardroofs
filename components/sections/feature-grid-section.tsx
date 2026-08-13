@@ -12,6 +12,7 @@ import {
   FireExtinguisher,
   BrushCleaning,
   BroomSparkles,
+  Trophy,
 } from "lucide-react";
 
 import type {
@@ -28,7 +29,7 @@ const iconMap = {
 
   building: Building2,
   commercial: Building2,
-
+  award : Trophy ,
   warehouse: Warehouse,
   metal: Warehouse,
   broom: BroomSparkles,
@@ -111,7 +112,6 @@ export function FeatureGridSection({
                 font-black
                 uppercase
                 tracking-[0.18em]
-                text-[#75333d]
               "
             >
               {data.subHeading}

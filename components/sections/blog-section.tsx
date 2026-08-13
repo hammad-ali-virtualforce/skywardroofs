@@ -22,7 +22,14 @@ export function BlogSection({
   ).slice(0, limit);
 
   return (
-    <section className="relative bg-[#f5f5f3] py-20 lg:py-28 aftershaperotated">
+    <section className="relative  bg-gradient-to-b
+
+        from-white
+
+        via-[#fefefe]
+
+        to-[#f7f7f7]
+         py-20 lg:py-28 aftershaperotated">
       <div className="mx-auto max-w-[1500px] px-6 lg:px-8">
 
         {/* =========================
