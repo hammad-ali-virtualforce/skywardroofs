@@ -147,7 +147,10 @@ function BlogCard({
 }) {
   const image =
     post.featuredImage?.node;
-
+    console.log("posts",post)
+ const postUrl = post.slug
+    ? `/blog/${post.slug}/`
+    : "#";
   return (
     <article
       className="
@@ -163,7 +166,7 @@ function BlogCard({
 
       {image && (
         <Link
-          href={post.uri || "#"}
+          href={postUrl}
           className="
             relative
             block
@@ -231,7 +234,7 @@ function BlogCard({
             "
           >
             <Link
-              href={post.uri || "#"}
+              href={postUrl}
               className="
                 transition-colors
                 hover:text-[#75333d]
@@ -261,7 +264,7 @@ function BlogCard({
         {post.uri && (
           <div className="mt-auto pt-7">
             <Link
-              href={post.uri}
+              href={postUrl}
               className="
                 inline-flex
                 items-center

@@ -207,6 +207,7 @@ export type BlogPostItem = {
   id: string;
   databaseId: number;
   title: string | null;
+  slug: string | null;
   uri: string | null;
   date: string | null;
   excerpt: string | null;
@@ -266,6 +267,7 @@ export type FaqSectionData = {
 export type ServiceAreaItem = {
   id: string;
   title: string | null;
+   slug: string | null;
   uri: string | null;
 };
 
@@ -835,6 +837,7 @@ const GET_PAGE_QUERY = `
                   id
                   databaseId
                   title
+                  slug
                   uri
                   date
                   excerpt
@@ -1149,4 +1152,662 @@ export async function getPage(
     { uri },
   ); 
   return data.page;
+}
+
+type GetServiceAreaResponse = {
+  serviceArea: ServiceAreaData | null;
+};
+
+const SERVICE_AREA_QUERY = `
+  query GetServiceArea($slug: ID!) {
+    serviceArea(
+      id: $slug
+      idType: SLUG
+    ) {
+      id
+      databaseId
+      title
+      slug
+      uri
+
+      pageBuilderFields {
+        pageSections {
+          __typename
+
+          ... on PageBuilderFieldsPageSectionsHeroLayout {
+            heroEyebrow {
+              heroEyebrowText
+            }
+
+            heroHeading
+            heroDescription
+            heroGoogleRatingBlockHeading
+            showForm
+            showTrustItems
+
+            trustItems {
+              trustIcon
+              trustItemsText
+            }
+
+            heroBackgroundImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            heroImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsPartnersLayout {
+            partnersImageSection {
+              partnerImage {
+                node {
+                  id
+                  sourceUrl
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+
+              partnerImageLink
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsAboutUsLayout {
+            aboutUsContent
+            aboutUsHeading
+            buttonLink
+            buttonTitle
+            imagePosition
+            ownerName
+
+            aboutUsImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            backgroundImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsWorkingWithUsLayout {
+            heading
+
+            movingImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            stillImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            firstItemHeading
+            firstItemSubHeading
+            firstItemContent
+
+            secondItemHeading
+            secondItemSubHeading
+            secondItemContent
+
+            thirdItemHeading
+            thirdItemSubHeading
+            thirdItemContent
+
+            buttonText
+            buttonLink
+          }
+
+          ... on PageBuilderFieldsPageSectionsVideoShowcaseLayout {
+            heading
+            description
+            mainVideoUrl
+
+            mainVideoThumbnail {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            galleryItem {
+              youtubeUrl
+
+              thumbnail {
+                node {
+                  id
+                  sourceUrl
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsMediaCtaLayout {
+            heading
+            description
+            buttonTitle
+            buttonLink
+            numberOfColumns
+            imagePosition
+            imageAnimation
+
+            backgroundImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            mainImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsServicesGridLayout {
+            heading
+            description
+            slogan
+
+            servicesCollageImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            servicesItems {
+              icon
+              heading
+              description
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsProcessSectionLayout {
+            heading
+            subHeading
+            description
+
+            processItems {
+              heading
+              description
+              icon
+
+              backgroundImage {
+                node {
+                  id
+                  sourceUrl
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsTeamSectionLayout {
+            heading
+            description
+
+            teamMembers(first: 50) {
+              nodes {
+                __typename
+
+                ... on TeamMember {
+                  id
+                  title
+
+                  featuredImage {
+                    node {
+                      id
+                      sourceUrl
+                      altText
+                      mediaDetails {
+                        width
+                        height
+                      }
+                    }
+                  }
+
+                  position {
+                    position
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsBlogSectionLayout {
+            heading
+            description
+            buttonTitle
+            buttonLink
+            noOfPosts
+
+            posts {
+              nodes {
+                __typename
+
+                ... on Post {
+                  id
+                  databaseId
+                  title
+                  slug
+                  uri
+                  date
+                  excerpt
+
+                  featuredImage {
+                    node {
+                      id
+                      sourceUrl
+                      altText
+
+                      mediaDetails {
+                        width
+                        height
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsFaqSectionLayout {
+            heading
+            description
+
+            faqImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            faqs {
+              nodes {
+                __typename
+
+                ... on Faq {
+                  id
+                  title
+
+                  faqDetails {
+                    answer
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsServiceAreasLayout {
+            heading
+            description
+
+            backgroundImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            serviceAreas {
+              nodes {
+                __typename
+
+                ... on ServiceArea {
+                  id
+                  title
+                  slug
+                  uri
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsContentMediaLayout {
+            eyebrow
+            heading
+            subHeading
+            content
+            buttonTitle
+            buttonLink
+            backgroundStyle
+            contentWidth
+            imageAnimation
+            imagePosition
+
+            image {
+              node {
+                id
+                sourceUrl
+                altText
+
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsFeatureGridLayout {
+            heading
+            subHeading
+            description
+            columns
+            backgroundStyle
+
+            featureItems {
+              icon
+              heading
+              description
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsProjectGalleryLayout {
+            heading
+            subHeading
+            description
+            layoutStyle
+            columns
+            backgroundStyle
+            showLightbox
+
+            galleryItems {
+              caption
+              projectLink
+
+              image {
+                node {
+                  id
+                  sourceUrl
+                  altText
+
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsReviewsLayout {
+            heading
+            subHeading
+            layoutStyle
+            backgroundStyle
+            buttonTitle
+            buttonLink
+
+            testimonials {
+              nodes {
+                __typename
+
+                ... on Testimonial {
+                  id
+                  title
+
+                  testimonialDetails {
+                    review
+                    rating
+                    location
+
+                    customerImage {
+                      node {
+                        id
+                        sourceUrl
+                        altText
+
+                        mediaDetails {
+                          width
+                          height
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsProductCardsLayout {
+            heading
+            subHeading
+            description
+            columns
+            backgroundStyle
+
+            productItems {
+              heading
+              subHeading
+              description
+              buttonTitle
+              buttonLink
+
+              image {
+                node {
+                  id
+                  sourceUrl
+                  altText
+
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsComparisonLayout {
+            heading
+            subHeading
+            description
+            backgroundStyle
+
+            leftHeading
+            leftContent
+
+            leftImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            rightHeading
+            rightContent
+
+            rightImage {
+              node {
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+
+            comparisonRows {
+              label
+              leftValue
+              rightValue
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsTrustBadgesLayout {
+            heading
+            subHeading
+            description
+            columns
+            backgroundStyle
+
+            trustBadgeItems {
+              heading
+              link
+
+              logo {
+                node {
+                  id
+                  sourceUrl
+                  altText
+
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PageBuilderFieldsPageSectionsInnerHeroLayout {
+            heading
+            subHeading
+            backgroundPosition
+            overlayOpacity
+            showBreadcrumbs
+            textAllignment
+
+            backgroundImage {
+              node {
+                id
+                sourceUrl
+                altText
+
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export type ServiceAreaData = {
+  id: string;
+  databaseId: number;
+  title: string | null;
+  slug: string | null;
+  uri: string | null;
+
+  pageBuilderFields: {
+    pageSections: PageSection[] | null;
+  } | null;
+};
+
+export async function getServiceAreaBySlug(
+  slug: string,
+): Promise<ServiceAreaData | null> {
+  const data =
+    await fetchGraphQL<GetServiceAreaResponse>(
+      SERVICE_AREA_QUERY,
+      { slug },
+    );
+
+  return data.serviceArea;
 }

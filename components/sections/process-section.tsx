@@ -1,10 +1,56 @@
 import Image from "next/image";
 
 import {
+  House,
+  Building2,
+  Warehouse,
+  Hammer,
+  Wrench,
+  HardHat,
+  Shield,
+  ShieldCheck,
   BadgeCheck,
-  ClipboardList,
-  PhoneCall,
-  SearchCheck,
+  CheckCircle2,
+  Search,
+  ScanSearch,
+  CalendarDays,
+  Clock3,
+  Clipboard,
+  ClipboardCheck,
+  FileCheck2,
+  Layers3,
+  CloudLightning,
+  Wind,
+  Droplets,
+  Sun,
+  Snowflake,
+  Thermometer,
+  MapPin,
+  Navigation,
+  Phone,
+  Mail,
+  MessageCircle,
+  Star,
+  Award,
+  Trophy,
+  ThumbsUp,
+  Heart,
+  Users,
+  UserCheck,
+  BriefcaseBusiness,
+  Wallet,
+  CircleDollarSign,
+  CreditCard,
+  Banknote,
+  Calculator,
+  ChartNoAxesColumn,
+  Truck,
+  Package,
+  Settings,
+  Sparkles,
+  ArrowRight,
+  CircleHelp,
+  Info,
 } from "lucide-react";
 
 import type {
@@ -16,10 +62,69 @@ type ProcessSectionProps = {
 };
 
 const iconMap = {
-  phone: PhoneCall,
-  inspection: SearchCheck,
-  estimate: ClipboardList,
-  installation: BadgeCheck,
+  home: House,
+  building: Building2,
+  warehouse: Warehouse,
+  hammer: Hammer,
+  wrench: Wrench,
+  "hard-hat": HardHat,
+
+  shield: Shield,
+  "shield-check": ShieldCheck,
+  "badge-check": BadgeCheck,
+  check: CheckCircle2,
+
+  search: Search,
+  inspection: ScanSearch,
+
+  calendar: CalendarDays,
+  clock: Clock3,
+
+  clipboard: Clipboard,
+  "clipboard-check": ClipboardCheck,
+  "file-check": FileCheck2,
+
+  layers: Layers3,
+
+  storm: CloudLightning,
+  wind: Wind,
+  droplets: Droplets,
+  sun: Sun,
+  snowflake: Snowflake,
+  thermometer: Thermometer,
+
+  "map-pin": MapPin,
+  navigation: Navigation,
+
+  phone: Phone,
+  mail: Mail,
+  message: MessageCircle,
+
+  star: Star,
+  award: Award,
+  trophy: Trophy,
+  "thumbs-up": ThumbsUp,
+  heart: Heart,
+
+  users: Users,
+  "user-check": UserCheck,
+  briefcase: BriefcaseBusiness,
+
+  wallet: Wallet,
+  dollar: CircleDollarSign,
+  "credit-card": CreditCard,
+  banknote: Banknote,
+  calculator: Calculator,
+  chart: ChartNoAxesColumn,
+
+  truck: Truck,
+  package: Package,
+  tool: Settings,
+
+  sparkles: Sparkles,
+  "arrow-right": ArrowRight,
+  "circle-help": CircleHelp,
+  info: Info,
 };
 
 function normalizeIcon(
