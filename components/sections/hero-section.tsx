@@ -137,7 +137,7 @@ export function HeroSection({
         <div>
           {/* hero heading/content */}
         </div>
-
+          
         {data.showForm && (
           <HeroInspectionForm />
         )}
