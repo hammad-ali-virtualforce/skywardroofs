@@ -531,7 +531,13 @@ function getBackgroundClasses(
   switch (style) {
     case "light":
       return `
-        bg-[#f5f5f3]
+         bg-gradient-to-b
+
+        from-white
+
+        via-[#fefefe]
+
+        to-[#f7f7f7]
         text-[#252525]
       `;
 

@@ -7,10 +7,16 @@ import { getSiteData } from "@/lib/site-data";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Skyward Roofs",
-  description: "Professional roofing services.",
-};
+  title: {
+    default:
+      "Skyward Roofing & Restoration",
+    template:
+      "%s | Skyward Roofing",
+  },
 
+  description:
+    "Professional roofing services from Skyward Roofing & Restoration.",
+};
 export default async function RootLayout({
   children,
 }: Readonly<{

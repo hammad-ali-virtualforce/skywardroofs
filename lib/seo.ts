@@ -6,6 +6,12 @@ const WP_URL =
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL!;
 
+const SITE_NAME =
+  "Skyward Roofing & Restoration";
+
+const DEFAULT_DESCRIPTION =
+  "Professional roofing services from Skyward Roofing & Restoration.";
+
 type RankMathResponse = {
   success?: boolean;
   head?: string;
@@ -32,7 +38,9 @@ function extractMeta(
   );
 }
 
-function extractTitle(html: string) {
+function extractTitle(
+  html: string,
+) {
   return (
     html.match(
       /<title[^>]*>(.*?)<\/title>/i,
@@ -54,6 +62,41 @@ function extractCanonical(
   );
 }
 
+/* =========================================
+   TITLE CLEANUP
+========================================= */
+
+function buildSiteTitle(
+  title: string | null,
+) {
+  const cleanTitle =
+    title?.trim();
+
+  if (!cleanTitle) {
+    return SITE_NAME;
+  }
+
+  /*
+   * If Rank Math already contains
+   * Skyward Roofing, don't add it again.
+   */
+  if (
+    cleanTitle
+      .toLowerCase()
+      .includes(
+        "skyward roofing",
+      )
+  ) {
+    return cleanTitle;
+  }
+
+  return `${cleanTitle} | Skyward Roofing`;
+}
+
+/* =========================================
+   SEO
+========================================= */
+
 export async function getRankMathMetadata(
   path: string,
 ): Promise<Metadata> {
@@ -62,10 +105,6 @@ export async function getRankMathMetadata(
       ? path
       : `/${path}`;
 
-  /*
-   * Rank Math needs the WordPress URL
-   * whose SEO data it should calculate.
-   */
   const wordpressPageUrl =
     `${WP_URL}${normalizedPath}`;
 
@@ -76,17 +115,22 @@ export async function getRankMathMetadata(
     )}`;
 
   try {
-    const response = await fetch(
-      endpoint,
-      {
-        next: {
-          revalidate: 300,
+    const response =
+      await fetch(
+        endpoint,
+        {
+          next: {
+            revalidate: 300,
+          },
         },
-      },
-    );
+      );
 
     if (!response.ok) {
-      return {};
+      return {
+        title: SITE_NAME,
+        description:
+          DEFAULT_DESCRIPTION,
+      };
     }
 
     const data: RankMathResponse =
@@ -96,11 +140,20 @@ export async function getRankMathMetadata(
       data.head || "";
 
     if (!head) {
-      return {};
+      return {
+        title: SITE_NAME,
+        description:
+          DEFAULT_DESCRIPTION,
+      };
     }
 
-    const title =
+    const rankMathTitle =
       extractTitle(head);
+
+    const finalTitle =
+      buildSiteTitle(
+        rankMathTitle,
+      );
 
     const description =
       extractMeta(
@@ -154,10 +207,8 @@ export async function getRankMathMetadata(
       );
 
     /*
-     * Canonical from Rank Math will
-     * normally point to WordPress.
-     *
-     * Replace WP domain with frontend.
+     * Replace WordPress domain
+     * with frontend domain.
      */
     const frontendCanonical =
       canonical
@@ -169,10 +220,11 @@ export async function getRankMathMetadata(
 
     return {
       title:
-        title || undefined,
+        finalTitle,
 
       description:
-        description || undefined,
+        description ||
+        DEFAULT_DESCRIPTION,
 
       alternates: {
         canonical:
@@ -181,17 +233,21 @@ export async function getRankMathMetadata(
 
       openGraph: {
         title:
-          ogTitle ||
-          title ||
-          undefined,
+          buildSiteTitle(
+            ogTitle ||
+            rankMathTitle,
+          ),
 
         description:
           ogDescription ||
           description ||
-          undefined,
+          DEFAULT_DESCRIPTION,
 
         url:
           frontendCanonical,
+
+        siteName:
+          SITE_NAME,
 
         images:
           ogImage
@@ -211,15 +267,17 @@ export async function getRankMathMetadata(
             : "summary_large_image",
 
         title:
-          twitterTitle ||
-          ogTitle ||
-          title ||
-          undefined,
+          buildSiteTitle(
+            twitterTitle ||
+            ogTitle ||
+            rankMathTitle,
+          ),
 
         description:
           twitterDescription ||
+          ogDescription ||
           description ||
-          undefined,
+          DEFAULT_DESCRIPTION,
 
         images:
           twitterImage ||
@@ -237,6 +295,12 @@ export async function getRankMathMetadata(
       error,
     );
 
-    return {};
+    return {
+      title:
+        SITE_NAME,
+
+      description:
+        DEFAULT_DESCRIPTION,
+    };
   }
 }

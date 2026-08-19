@@ -18,16 +18,28 @@ type Props = {
 
 export async function generateMetadata({
   params,
-}: Props): Promise<Metadata> {
-  const { slug } =
-    await params;
+}: Props) {
+  const { slug } = await params;
 
   const uri =
     `/${slug.join("/")}/`;
 
-  return getRankMathMetadata(
-    uri,
-  );
+  const page =
+    await getPage(uri);
+
+  if (!page) {
+    return {};
+  }
+
+  const rankMath =
+    await getRankMathMetadata(uri);
+
+  return {
+    ...rankMath,
+
+    title:
+      `${page.title}`,
+  };
 }
 
 
